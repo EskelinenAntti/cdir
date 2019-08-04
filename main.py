@@ -19,31 +19,48 @@ def run(screen):
 
     cursor = Cursor(folder.num_sub_folders())
 
-    while(True):
-        print_folder(screen, folder, cursor)
+    pad = curses.newpad(folder.num_sub_folders() + 1, screen.getmaxyx()[1])
+    pad.keypad(1)
 
-        key = screen.getch()
+    while(True):
+
+        print_folder(pad, screen, folder, cursor)
+
+        key = pad.getch()
         if key == curses.KEY_UP:
             cursor.move_up()
         elif key == curses.KEY_DOWN:
             cursor.move_down()
         elif key == curses.KEY_ENTER or key == 10 or key == 13:
             select_folder(folder, cursor)
+        elif key == curses.KEY_RESIZE:
+            pass
         elif key == ord('q'):
             break
 
 
-def print_folder(screen, folder, cursor):
-    screen.clear()
-    screen.addstr(0, 0, folder.current_path)
+def print_folder(pad, screen, folder, cursor):
+
+    screen_max_y_size = screen.getmaxyx()[0]
+    screen_max_x_size = screen.getmaxyx()[1]
+    pad.resize(max(folder.num_sub_folders() + 1, screen_max_y_size),
+               screen_max_x_size)
+    pad.clear()
+    pad.addstr(0, 0, folder.current_path)
     for i in range(0, len(folder.sub_folders)):
+        # Print only letters that fit to screen
+        printed_sub_folder_name = folder.sub_folders[i][:screen_max_x_size]
         if (i == cursor.row_index):
             # Highlight cursor
-            screen.addstr(i+1, 0, folder.sub_folders[i], curses.A_STANDOUT)
+            pad.addstr(i+1, 0, printed_sub_folder_name, curses.A_STANDOUT)
         else:
-            screen.addstr(i+1, 0, folder.sub_folders[i])
+            pad.addstr(i+1, 0, printed_sub_folder_name)
 
-    screen.refresh()
+    screen_max_y_coord = screen_max_y_size - 1
+    screen_max_x_coord = screen_max_x_size - 1
+
+    pad.refresh(max(0, (cursor.row_index + 1)  - screen_max_y_coord) ,0,
+                    0,0, screen_max_y_coord, screen_max_x_coord)
 
 
 def select_folder(folder, cursor):
