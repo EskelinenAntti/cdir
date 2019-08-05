@@ -3,6 +3,7 @@ import curses
 from curses import wrapper
 from folder import Folder
 from cursor import Cursor
+from ui import UI
 
 
 def main():
@@ -19,12 +20,12 @@ def run(screen):
 
     cursor = Cursor(folder.num_sub_folders())
 
-    pad = curses.newpad(folder.num_sub_folders() + 1, screen.getmaxyx()[1])
-    pad.keypad(1)
+    ui = UI(screen, cursor)
+    pad = ui.folder_pad
 
     while(True):
 
-        print_folder(pad, screen, folder, cursor)
+        ui.update_screen(folder)
 
         key = pad.getch()
         if key == curses.KEY_UP:
@@ -39,28 +40,59 @@ def run(screen):
             break
 
 
-def print_folder(pad, screen, folder, cursor):
+def print_folders(pad, screen, folder, cursor):
 
     screen_max_y_size = screen.getmaxyx()[0]
-    screen_max_x_size = screen.getmaxyx()[1]
+    files_max_x_size = round(screen.getmaxyx()[1] / 2)
     pad.resize(max(folder.num_sub_folders() + 1, screen_max_y_size),
-               screen_max_x_size)
+               files_max_x_size)
     pad.clear()
-    pad.addstr(0, 0, folder.current_path)
+
+    screen.clear()
+    screen.addstr(0, 0, folder.current_path)
+
+    screen.refresh()
+
     for i in range(0, len(folder.sub_folders)):
         # Print only letters that fit to screen
-        printed_sub_folder_name = folder.sub_folders[i][:screen_max_x_size]
+        printed_sub_folder_name = folder.sub_folders[i][:files_max_x_size]
         if (i == cursor.row_index):
             # Highlight cursor
-            pad.addstr(i+1, 0, printed_sub_folder_name, curses.A_STANDOUT)
+            pad.addstr(i, 0, printed_sub_folder_name, curses.A_STANDOUT)
         else:
-            pad.addstr(i+1, 0, printed_sub_folder_name)
+            pad.addstr(i, 0, printed_sub_folder_name)
 
     screen_max_y_coord = screen_max_y_size - 1
-    screen_max_x_coord = screen_max_x_size - 1
-
+    screen_max_x_coord = files_max_x_size - 1
     pad.refresh(max(0, (cursor.row_index + 1)  - screen_max_y_coord) ,0,
-                    0,0, screen_max_y_coord, screen_max_x_coord)
+                    2,0, screen_max_y_coord, screen_max_x_coord)
+
+
+def print_files(pad, screen, folder, cursor):
+    screen_max_y_size = screen.getmaxyx()[0]
+    files_max_x_size = screen.getmaxyx()[1]
+    pad.resize(max(folder.num_sub_folders() + 1, screen_max_y_size),
+               files_max_x_size)
+    pad.clear()
+
+    screen.clear()
+    screen.addstr(0, 0, folder.current_path)
+
+    screen.refresh()
+
+    for i in range(0, len(folder.sub_folders)):
+        # Print only letters that fit to screen
+        printed_sub_folder_name = folder.sub_folders[i][:files_max_x_size]
+        if (i == cursor.row_index):
+            # Highlight cursor
+            pad.addstr(i, 0, printed_sub_folder_name, curses.A_STANDOUT)
+        else:
+            pad.addstr(i, 0, printed_sub_folder_name)
+
+    screen_max_y_coord = screen_max_y_size - 1
+    screen_max_x_coord = files_max_x_size - 1
+    pad.refresh(max(0, (cursor.row_index + 1)  - screen_max_y_coord) ,0,
+                    2,0, screen_max_y_coord, screen_max_x_coord)
 
 
 def select_folder(folder, cursor):
