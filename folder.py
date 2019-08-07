@@ -25,6 +25,9 @@ class Folder:
     def num_sub_folders(self):
         return len(self.__get_sub_folders())
 
+    def num_sub_files(self):
+        return len(self.__get_sub_files())
+
     def __get_sub_files(self):
         sub_files = [f for f in os.listdir('.') if os.path.isfile(f)]
         return self.__sort_hidden_last(sub_files)
