@@ -3,13 +3,13 @@ import curses
 
 class UI:
 
-    def __init__(self, screen, cursor, file_scroller):
+    def __init__(self, screen, cursor, file_scroll_position):
         self.screen = screen
         self.folder_pad = curses.newpad(1,1)
         self.folder_pad.keypad(1)
         self.file_pad = curses.newpad(1,1)
         self.cursor = cursor
-        self.file_scroller = file_scroller
+        self.file_scroll_position = file_scroll_position
 
     def update_screen(self, folder):
 
@@ -69,8 +69,11 @@ class UI:
             self.file_pad.addstr(i, 0, printed_file_name)
 
         screen_max_y_coord = screen_max_y_size - 1
-        file_pad_max_x_coord = self.screen.getmaxyx()[1]
-        self.file_pad.refresh(self.file_scroller.row_index, 0,
+        file_pad_max_x_coord = self.screen.getmaxyx()[1] - 1
+
+        self.file_scroll_position.update_visible_height(self.__get_file_column_heigth())
+
+        self.file_pad.refresh(self.file_scroll_position.get_first_visible_index(), 0,
                               2, self.__get_folder_column_width(),
                               screen_max_y_coord, file_pad_max_x_coord)
 
@@ -80,3 +83,5 @@ class UI:
     def __get_file_column_width(self):
         return self.screen.getmaxyx()[1] - self.__get_folder_column_width()
 
+    def __get_file_column_heigth(self):
+        return self.screen.getmaxyx()[0] - 2
