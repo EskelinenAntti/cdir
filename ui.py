@@ -3,13 +3,14 @@ import curses
 
 class UI:
 
-    def __init__(self, screen, cursor, file_scroll_position):
+    def __init__(self, screen, cursor, file_scroll_position, query):
         self.screen = screen
         self.folder_pad = curses.newpad(1,1)
         self.folder_pad.keypad(1)
         self.file_pad = curses.newpad(1,1)
         self.cursor = cursor
         self.file_scroll_position = file_scroll_position
+        self.query = query
 
     def update_screen(self, folder):
 
@@ -21,8 +22,14 @@ class UI:
     def __draw_header_row(self, current_folder):
 
         self.screen.clear()
+
+        if self.query.query_text:
+            folder_view_header = "Search: " + self.query.query_text
+        else:
+            folder_view_header = current_folder
+
         self.screen.addstr(0, 0,
-                        current_folder[:self.__get_folder_column_width()-1])
+                           folder_view_header[:self.__get_folder_column_width()-1])
 
         if self.cursor.column_index == 1:
             self.screen.addstr(0, self.__get_folder_column_width(),
@@ -34,6 +41,9 @@ class UI:
         self.screen.refresh()
 
     def __draw_folders(self, folders):
+
+
+
         pad_max_y_size = self.screen.getmaxyx()[0] - 2
         self.file_pad.resize(max(len(folders), pad_max_y_size),
                                self.__get_folder_column_width())
