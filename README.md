@@ -2,7 +2,7 @@
 
 Intuitive and interactive way to browse files and folders in bash shell. Implemented with python curses.
 
-TODO: add giff
+![gif](doc/nav2.gif)
 
 #### Features
 - Use arrow keys to browse files.
