@@ -23,7 +23,7 @@ Remember to replace `PATH_TO_CLONED_REPOSITORY` with absolute path to the cloned
 
 ## Contribution
 
-Although there is yet no formal quideline for contribution, it is warmly welcomed! If you are interested in contributing to the project, please make a new issue before writing any code where you describe at least the following:
+Although there are no formal quidelines for contribution yet, it is warmly welcomed! If you are interested in contributing to the project, please make a new issue before writing any code where you describe at least the following:
 
 - What kind of change are you planning to do?
 - Why is it needed and how does it improve the project?
