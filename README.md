@@ -15,3 +15,5 @@ Intuitive and interactive way to browse files and folders in bash shell. Impleme
 export NAV_HOME='path to root of the cloned repository'
 alias nav='source $NAV_HOME/bin/nav.sh'
 ```
+3. Refresh .bashrc file with restarting terminal or executing `source .bashrc`
+4. Type nav and start browsing files and folders
