@@ -34,7 +34,15 @@ class KeyPressHandler():
                 escape_was_pressed = True
             screen.nodelay(False)
 
-        return escape_was_pressed
+        prg_should_exit = False
+        if escape_was_pressed:
+            if self.query.query_text:
+                self.query.clear()
+                self.__clear_cursor()
+            else:
+                prg_should_exit = True
+
+        return prg_should_exit
 
     def move_cursor(self, key):
 
@@ -51,9 +59,11 @@ class KeyPressHandler():
             self.__select_folder()
         elif key == curses.KEY_BACKSPACE:
             self.query.removeChar()
+            self.__clear_cursor()
         else:
             self.query.addChar(chr(key))
-            self.cursor.clear_cursor(self.folder.num_sub_folders(), 2)
+            self.__clear_cursor()
+
 
     # Use inheritation to avoid more if-elif structures
     def move_scroll_position(self, key):
@@ -73,6 +83,9 @@ class KeyPressHandler():
         folders = self.query.filter_folders(self.folder.sub_folders)
 
         self.folder.move_to(folders[self.cursor.row_index])
-        self.cursor.clear_cursor(self.folder.num_sub_folders(), 2)
+        self.__clear_cursor()
         self.file_scroll_position.content_changed(self.folder.num_sub_files())
         self.query.clear()
+
+    def __clear_cursor(self):
+        self.cursor.clear_cursor(self.folder.num_sub_folders(), 2)

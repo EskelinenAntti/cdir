@@ -7,20 +7,27 @@ from ui import UI
 from scroll_position import ScrollPosition
 from key_press_handler import KeyPressHandler
 from query import Query
+from file_writer import FileWriter
+import sys
 
+
+CD_SCRIPT_FILE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/tmp/navigate_to.sh"
 
 def main():
     wrapper(run)
-
-    # Move terminal to python working directory
-    os.system("/bin/bash")
-
+    # Exit success
+    sys.exit()
 
 def run(screen):
+
     init_curses(screen)
 
     query = Query()
     folder = Folder(query)
+
+    if len(sys.argv) > 1:
+        current_dir = sys.argv[1]
+        folder.move_to(current_dir)
 
     cursor = Cursor(folder.num_sub_folders(), 2)
     file_scroll_position = ScrollPosition(0, folder.num_sub_files())
@@ -41,6 +48,10 @@ def run(screen):
             break
 
         keyPressHandler.handle_key_press(key)
+
+    file_writer = FileWriter(CD_SCRIPT_FILE_PATH)
+    file_writer.write_line("cd " + folder.current_path)
+
 
 
 def init_curses(screen):

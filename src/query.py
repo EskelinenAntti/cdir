@@ -19,7 +19,8 @@ class Query:
 
         filtered_folders = []
         for folder in folders:
-            if self.query_text in folder:
+            # Use lower() for case-insensitivity
+            if self.query_text.lower() in folder.lower():
                 filtered_folders.append(folder)
 
         return filtered_folders
