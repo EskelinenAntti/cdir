@@ -57,7 +57,8 @@ class KeyPressHandler():
             self.cursor.move_right()
         elif key == curses.KEY_ENTER or key == 10 or key == 13:
             self.__select_folder()
-        elif key == curses.KEY_BACKSPACE:
+        # support backspace on windows also
+        elif key == curses.KEY_BACKSPACE or key == 8:
             self.query.removeChar()
             self.__clear_cursor()
         else:
