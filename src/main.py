@@ -11,7 +11,7 @@ from file_writer import FileWriter
 import sys
 
 
-CD_SCRIPT_FILE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/tmp/navigate_to.sh"
+CD_SCRIPT_FILE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/tmp/navigate_to"
 
 def main():
     wrapper(run)
@@ -49,8 +49,13 @@ def run(screen):
 
         keyPressHandler.handle_key_press(key)
 
-    file_writer = FileWriter(CD_SCRIPT_FILE_PATH)
-    file_writer.write_line("cd " + folder.current_path)
+    # If running on windows
+    if os.name == "nt":
+        file_writer = FileWriter(CD_SCRIPT_FILE_PATH + ".bat")
+        file_writer.write_line("cd /d \"" + folder.current_path+"\"")
+    else:
+        file_writer = FileWriter(CD_SCRIPT_FILE_PATH + ".sh")
+        file_writer.write_line("cd " + folder.current_path)
 
 
 

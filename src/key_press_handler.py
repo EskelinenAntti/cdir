@@ -81,12 +81,13 @@ class KeyPressHandler():
             pass
 
     def __select_folder(self):
-        folders = self.query.filter_folders(self.folder.sub_folders)
-
-        self.folder.move_to(folders[self.cursor.row_index])
-        self.__clear_cursor()
-        self.file_scroll_position.content_changed(self.folder.num_sub_files())
+        selected_folder = self.folder.sub_folders[self.cursor.row_index]
         self.query.clear()
+
+        self.folder.move_to(selected_folder)
+        self.__clear_cursor()
+
+        self.file_scroll_position.content_changed(self.folder.num_sub_files())
 
     def __clear_cursor(self):
         self.cursor.clear_cursor(self.folder.num_sub_folders(), 2)
