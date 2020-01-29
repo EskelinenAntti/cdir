@@ -1,6 +1,6 @@
 # NAV
 
-Intuitive and fast way to browse files and folders. Supports bash shell, Windows Command Prompt and PowerShell. Implemented with python curses. Windows version uses [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) module.
+This project exists because I felt that typing multiple `cd`, `dir`/`ls` commands and striking the tab-key is not very fast or pleasant way to navigate in shell. As developers often need to work in multiple environments, nav supports bash shell, Windows Command Prompt and PowerShell. The project is implemented with python curses. Windows version uses [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) module.
 
 ![gif](doc/nav2.gif)
 
