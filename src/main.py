@@ -49,13 +49,19 @@ def run(screen):
 
         keyPressHandler.handle_key_press(key)
 
+    file_contents = "cd \"" + folder.current_path + "\""
+
     # If running on windows
     if os.name == "nt":
-        file_writer = FileWriter(CD_SCRIPT_FILE_PATH + ".bat")
-        file_writer.write_line("cd /d \"" + folder.current_path+"\"")
+        bat_file_writer = FileWriter(CD_SCRIPT_FILE_PATH + ".bat")
+        bat_file_writer.write_line(file_contents)
+
+        ps_file_writer = FileWriter(CD_SCRIPT_FILE_PATH + ".ps1")
+        ps_file_writer.write_line(file_contents)
+
     else:
         file_writer = FileWriter(CD_SCRIPT_FILE_PATH + ".sh")
-        file_writer.write_line("cd " + folder.current_path)
+        file_writer.write_line(file_contents)
 
 
 
