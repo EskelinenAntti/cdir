@@ -1,8 +1,10 @@
 @echo off
 
-py %NAV_HOME%\src\main.py "%CD%"
+set nav_home=%~dp0..\
+
+py -m nav "%CD%"
 IF NOT ERRORLEVEL 1 (
-    CALL %NAV_HOME%\tmp\navigate_to.bat
-    erase %NAV_HOME%\tmp\navigate_to.bat
+    CALL "%nav_home%\tmp\navigate_to.bat"
+    erase "%nav_home%\tmp\navigate_to.bat"
 )
 

@@ -1,11 +1,10 @@
-from key_press_handler import KeyPressHandler
+import curses
 
 class KeyPressListener():
 
-    def __init__(self, key_press_handler: KeyPressHandler, screen):
-        self.key_press_handler = key_press_handler
+    def __init__(self, screen, on_key_pressed: "lambda"):
         self.screen = screen
-
+        self.on_key_pressed = on_key_pressed
         self.screen.keypad(True)
 
     def start(self):
@@ -17,8 +16,7 @@ class KeyPressListener():
             if self.__is_escape_key(key):
                 break
 
-            self.key_press_handler.handle_key_press(key)
-
+            self.on_key_pressed(key)
 
     def __is_escape_key(self, key):
         # From
@@ -27,21 +25,11 @@ class KeyPressListener():
         if key == curses.KEY_F1:
             return True
 
-        escape_was_pressed = False
         if key == 27:
             self.screen.nodelay(True)
             n = self.screen.getch()
             if n == -1:
                 # Escape was pressed
-                escape_was_pressed = True
+                return True
             self.screen.nodelay(False)
-
-        prg_should_exit = False
-        if escape_was_pressed:
-            if self.query.query_text:
-                self.query.clear()
-                self.__clear_cursor()
-            else:
-                prg_should_exit = True
-
-        return prg_should_exit
+        return False

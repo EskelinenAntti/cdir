@@ -1,8 +1,8 @@
 import curses
-from cursor import Cursor
-from query import Query
-from scroll_position import ScrollPosition
-from data.folder_navigator import FolderNavigator
+from nav.user_interface.cursor import Cursor
+from nav.user_interface.query import Query
+from nav.user_interface.scroll_position import ScrollPosition
+from nav.data.folder_navigator import FolderNavigator
 
 
 class MainView:

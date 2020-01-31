@@ -1,13 +1,10 @@
 #!/bin/bash
 
-OLD_PATH=$PWD
+# from https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself
+nav_home="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+nav_home="${nav_home}/.."
 
-cd $NAV_HOME/src 
-
-if python3 main.py $OLD_PATH; then 
-	source $NAV_HOME/tmp/navigate_to.sh
-	rm $NAV_HOME/tmp/navigate_to.sh
-else
-	# Program ended with exception	
-	cd $OLD_PATH
+if python3 -m nav $PWD; then
+	source $nav_home/tmp/navigate_to.sh
+	rm $nav_home/tmp/navigate_to.sh
 fi

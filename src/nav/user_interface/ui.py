@@ -1,10 +1,10 @@
 import curses
-from cursor import Cursor
-from query import Query
-from scroll_position import ScrollPosition
-from main_view import MainView
-from key_press_handler import KeyPressHandler
-from key_press_listener import KeyPressListener
+from nav.user_interface.query import Query
+from nav.user_interface.cursor import Cursor
+from nav.user_interface.scroll_position import ScrollPosition
+from nav.user_interface.main_view import MainView
+from nav.user_interface.key_press_handler import KeyPressHandler
+from nav.user_interface.key_press_listener import KeyPressListener
 
 class UI:
     """ Represents the higher level user interface. Wraps together components
@@ -21,14 +21,22 @@ class UI:
                                     self.file_scroll_position,
                                     self.folder_navigator,
                                     self.query)
-        self.key_press_listener = KeyPressListener(self.key_press_handler, screen)
 
-        # screen obeject is intentionally not saved as class attribute as we
-        # should not access it directly on higher level.
+        self.key_press_listener = KeyPressListener(
+            screen,
+            self.__on_key_pressed)
+
+        # screen object is intentionally not saved as class attribute here as we
+        # should not access it directly here on higher level.
 
     def show(self):
+        self.__update_screen()
+        self.key_press_listener.start()
 
 
+    def __on_key_pressed(self, key):
+        self.key_press_handler.handle_key_press(key)
+        self.__update_screen()
 
     def __update_screen(self):
         self.main_view.print_screen(self.folder_navigator,

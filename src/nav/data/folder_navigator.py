@@ -16,8 +16,20 @@ class FolderNavigator:
     def __get_current_path(self):
         return os.getcwd()
 
-    def __get_all_sub_folders(self):
-        sub_folders = (next(os.walk('.'))[1])
+    def __get_all_sub_folders(self, dir):
+        sub_folders = []
+
+        for sub_dir in os.listdir(dir):
+            if os.path.isdir(os.path.join(dir, sub_dir)):
+                """try:
+                    os.listdir(sub_dir)
+                except PermissionError:
+                    continue
+                """
+                # The commented code could be used to remove dirs that contents
+                # we do not have rights.
+                sub_folders.append(sub_dir)
+
         return [os.pardir] + self.__sort_hidden_last(sub_folders)
 
     @property
@@ -39,7 +51,7 @@ class FolderNavigator:
 
     def __initialize_in_cwd(self):
         self.current_path = self.__get_current_path()
-        self.__all_sub_folders = self.__get_all_sub_folders()
+        self.__all_sub_folders = self.__get_all_sub_folders(self.current_path)
         self.sub_files = self.__get_sub_files()
         self.sub_folders
 

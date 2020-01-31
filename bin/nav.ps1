@@ -1,5 +1,9 @@
-py $env:NAV_HOME\src\main.py $pwd.tostring() # or Success
+$nav_root_dir = (Get-Item $PSScriptRoot).parent.FullName
+
+py -m nav $pwd.tostring()
+
+# If script runned successfully
 if ($LASTEXITCODE -eq 0) {
-    . $env:NAV_HOME\tmp\navigate_to.ps1
-    erase $env:NAV_HOME\tmp\navigate_to.ps1
+    . "$nav_root_dir\tmp\navigate_to.ps1"
+    erase "$nav_root_dir\tmp\navigate_to.ps1"
 }

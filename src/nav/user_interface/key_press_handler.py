@@ -6,7 +6,7 @@ FILES_COLUMN = 1
 
 class KeyPressHandler():
 
-    def __init__(self, cursor, file_scroll_position, folder, query, main_view):
+    def __init__(self, cursor, file_scroll_position, folder, query):
         self.cursor = cursor
         self.file_scroll_position = file_scroll_position
         self.folder = folder
@@ -17,9 +17,6 @@ class KeyPressHandler():
             self.move_cursor(key)
         elif self.cursor.column_index == FILES_COLUMN:
             self.move_scroll_position(key)
-
-    def handle_escape_press(self):
-
 
     def move_cursor(self, key):
 
@@ -58,13 +55,19 @@ class KeyPressHandler():
             pass
 
     def __select_folder(self):
-        selected_folder = self.folder.sub_folders[self.cursor.row_index]
+        num_visible_folders = len(self.query.filter_folders(self.folder.sub_folders))
+
+        # No visible folders
+        if num_visible_folders == 0:
+            return
+
+        selected_folder = self.query.filter_folders(self.folder.sub_folders)[self.cursor.row_index]
         self.query.clear()
 
         self.folder.move_to(selected_folder)
         self.__clear_cursor()
 
-        self.file_scroll_position.content_changed(self.folder.num_sub_files())
+        self.file_scroll_position.content_changed(len(self.folder.sub_files))
 
     def __clear_cursor(self):
-        self.cursor.clear_cursor(self.folder.num_sub_folders(), 2)
+        self.cursor.clear_cursor(len(self.query.filter_folders(self.folder.sub_folders)), 2)
