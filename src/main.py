@@ -25,6 +25,7 @@ def run(screen):
     query = Query()
     folder = Folder(query)
 
+    # If script was started with path argument
     if len(sys.argv) > 1:
         current_dir = sys.argv[1]
         folder.move_to(current_dir)

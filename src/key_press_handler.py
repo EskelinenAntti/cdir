@@ -6,7 +6,7 @@ FILES_COLUMN = 1
 
 class KeyPressHandler():
 
-    def __init__(self, cursor, file_scroll_position, folder, query):
+    def __init__(self, cursor, file_scroll_position, folder, query, main_view):
         self.cursor = cursor
         self.file_scroll_position = file_scroll_position
         self.folder = folder
@@ -18,31 +18,8 @@ class KeyPressHandler():
         elif self.cursor.column_index == FILES_COLUMN:
             self.move_scroll_position(key)
 
-    def is_escape_key(self, key, screen):
-        # From
-        # https://stackoverflow.com/questions/5977395/ncurses-and-esc-alt-keys
+    def handle_escape_press(self):
 
-        if key == curses.KEY_F1:
-            return True
-
-        escape_was_pressed = False
-        if key == 27:
-            screen.nodelay(True)
-            n = screen.getch()
-            if n == -1:
-                # Escape was pressed
-                escape_was_pressed = True
-            screen.nodelay(False)
-
-        prg_should_exit = False
-        if escape_was_pressed:
-            if self.query.query_text:
-                self.query.clear()
-                self.__clear_cursor()
-            else:
-                prg_should_exit = True
-
-        return prg_should_exit
 
     def move_cursor(self, key):
 

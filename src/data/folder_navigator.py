@@ -1,13 +1,17 @@
 import os
-from query import Query
 
 
-class Folder:
+class FolderNavigator:
+    """ Core class used to navigate in file system and to read folder contents.
 
-    def __init__(self, query):
-        self.query = query
+    Attributes:
+        current_path: Path where the navigator is located currently
+        sub_folders: List of folders in current_path
+        sub_files: List of files in current_path
+    """
+
+    def __init__(self):
         self.__initialize_in_cwd()
-
 
     def __get_current_path(self):
         return os.getcwd()
@@ -18,7 +22,7 @@ class Folder:
 
     @property
     def sub_folders(self):
-            return self.query.filter_folders(self.__all_sub_folders)
+            return self.__all_sub_folders
 
     def __sort_hidden_last(self, items):
         normal_items = sorted([item for item in items
@@ -28,12 +32,6 @@ class Folder:
                                  if item[0] == "."], key=lambda s: s.lower())
 
         return normal_items + hidden_items
-
-    def num_sub_folders(self):
-        return len(self.sub_folders)
-
-    def num_sub_files(self):
-        return len(self.__get_sub_files())
 
     def __get_sub_files(self):
         sub_files = [f for f in os.listdir('.') if os.path.isfile(f)]
