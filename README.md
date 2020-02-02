@@ -1,13 +1,15 @@
+
+
 # NAV
 
-Intuitive and fast way to browse files and folders. Supports bash shell and Windows Command Prompt. Implemented with python curses. Windows version uses [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) module.
+This project exists because I felt that typing multiple `cd`, `dir`/`ls` commands and striking the tab-key is not very fast or pleasant way to navigate in shell. As developers often need to work in multiple environments, nav supports bash shell, Windows Command Prompt and PowerShell. The core component of the project is implemented with python and uses curses module. Windows version uses [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) module. 
 
 ![gif](doc/nav2.gif)
 
 #### Features
 - Use arrow keys and enter to browse files.
 - Modern and easy-to-use search functionality for folders: just start typing the name of the folder and folders are filtered by their name.
-- Supports both bash shell and Windows Command Prompt
+- Supports bash shell, Windows Command Prompt and PowerShell
 
 ## Usage - Bash
 1. Clone the repository
@@ -31,13 +33,4 @@ alias nav='source $NAV_HOME/bin/nav.sh'
 
 ## Contribution
 
-Although there are no formal quidelines for contribution yet, it is warmly welcomed! If you are interested in contributing to the project, please make a new issue before writing any code where you describe at least the following:
-
-- What kind of change are you planning to do?
-- Why is it needed and how does it improve the project?
-- Describe the actual code and file level changes: what classes need to be edited and how?
-- If any exisiting behaviour of the program needs to be changed, please describe it as accurately as possibly.
-
-The smaller the scope of a single issue is the more likely the issue will be accepted. It is better to make multiple small issues than one big issue.
-
-If the issue is accepted, you can proceed with making the change and creating a pull request.
+Although there are no formal quidelines for contribution yet, it is warmly welcomed! Please use issues to discuss about changes/features you would like to make before implementing them.
