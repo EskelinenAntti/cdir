@@ -1,6 +1,6 @@
 @echo off
 
-set nav_home=%~dp0..\
+set nav_home=%~dp0..\..\
 
 py -m nav "%CD%"
 IF NOT ERRORLEVEL 1 (
