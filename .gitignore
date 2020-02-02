@@ -4,3 +4,4 @@ __pychache__/
 *.pyc
 navigate_to.*
 env
+nav.egg-info

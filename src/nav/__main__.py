@@ -25,6 +25,7 @@ def run(screen):
     ui = UI(screen, folder_navigator)
     ui.show()
 
+    # User has selected a folder
     ScriptWriter.write(folder_navigator.current_path)
 
 def init_curses(screen):

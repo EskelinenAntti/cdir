@@ -11,23 +11,21 @@ Intuitive and fast way to browse files and folders. Supports bash shell and Wind
 
 ## Usage - Bash
 1. Clone the repository
-2. Add following lines to .bashrc:
+2. In the root folder of the cloned repository run `pip install .` to install nav.
+3. Add following line to .bashrc:
 ```bash
-export NAV_HOME='PATH_TO_CLONED_REPOSITORY'
 alias nav='source $NAV_HOME/bin/nav.sh'
 ```
-Remember to replace `PATH_TO_CLONED_REPOSITORY` with absolute path to the cloned repository.
-
-3. Refresh .bashrc file with restarting terminal or executing `source .bashrc`.
-4. Type nav and start browsing files and folders.
-5. Press f1 to quit nav.
+4. Refresh .bashrc file with restarting terminal or executing `source .bashrc`.
+5. Type nav and start browsing files and folders.
+6. Press f1 to quit nav.
 
 ## Usage - Windows Command Prompt
 
 1. Clone the repository.
-2. Install [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) with `pip install windows-curses`.
-3. Add absolute path to `\bin` folder in cloned project to PATH-environment variable.
-4. Add new environment variable `NAV_HOME` that contains absolute path to the root of the cloned project.
+2. In the root folder of the cloned repository run `pip install .` to install nav.
+3. Install [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) with `pip install windows-curses`.
+4. Add absolute path to `\bin` folder in cloned project to PATH-environment variable.
 5. Type nav and start browsing files and folders.
 6. Press f1 to quit nav.
 
