@@ -28,7 +28,7 @@ alias nav='source [path to cloned repository]/bin/nav.sh
 2. In the src folder of the cloned repository run `pip install -e .` to install nav.
 3. Install [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) with `pip install windows-curses`.
 4. Add absolute path to `bin` folder in cloned repository to PATH-environment variable.
-5. Type nav and start browsing files and folders.
+5. Run `nav` in either Windows Command Prompt or PowerShell and start browsing files and folders.
 6. Press esc to quit nav and move to new location.
 
 ## Contribution
