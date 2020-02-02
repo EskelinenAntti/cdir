@@ -18,8 +18,9 @@ This project exists because I felt that typing multiple `cd`, `dir`/`ls` command
 ```bash
 alias nav='source [path to cloned repository]/bin/nav.sh
 ```
-6. Type nav and start browsing files and folders.
-7. Press f1 to quit nav.
+4. Run `source .bashrc` to update changes or restart shell.
+5. Type `nav` in bash and start browsing files and folders.
+6. Press f1 to quit nav and move to new location.
 
 ## Usage - Windows Command Prompt
 
@@ -28,7 +29,7 @@ alias nav='source [path to cloned repository]/bin/nav.sh
 3. Install [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) with `pip install windows-curses`.
 4. Add absolute path to `bin` folder in cloned repository to PATH-environment variable.
 5. Type nav and start browsing files and folders.
-6. Press f1 to quit nav.
+6. Press esc to quit nav and move to new location.
 
 ## Contribution
 
