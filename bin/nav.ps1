@@ -1,4 +1,4 @@
-$nav_root_dir = (Get-Item $PSScriptRoot).parent.parent.FullName
+$nav_root_dir = (Get-Item $PSScriptRoot).parent.FullName
 
 py -m nav $pwd.tostring()
 

@@ -13,20 +13,20 @@ This project exists because I felt that typing multiple `cd`, `dir`/`ls` command
 
 ## Usage - Bash
 1. Clone the repository
-2. In the root folder of the cloned repository run `pip install .` to install nav.
-3. Add bin folder to path variable, i.e. add following line to ~/.profile (or ~/.bash_profile):
+2. In the src folder of the cloned repository run `pip install -e .` to install nav.
+3. Add following line to .bashrc:
 ```bash
-PATH=[PATH_TO_CLONED_REPOSITORY]/linux/bin:$PATH
+alias nav='source [path to cloned repository]/bin/nav.sh
 ```
-4. Type nav and start browsing files and folders.
-5. Press f1 to quit nav.
+6. Type nav and start browsing files and folders.
+7. Press f1 to quit nav.
 
 ## Usage - Windows Command Prompt
 
 1. Clone the repository.
-2. In the root folder of the cloned repository run `pip install .` to install nav.
+2. In the src folder of the cloned repository run `pip install -e .` to install nav.
 3. Install [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) with `pip install windows-curses`.
-4. Add absolute path to `bin\windows\` folder in cloned repository to PATH-environment variable.
+4. Add absolute path to `bin` folder in cloned repository to PATH-environment variable.
 5. Type nav and start browsing files and folders.
 6. Press f1 to quit nav.
 
