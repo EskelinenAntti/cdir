@@ -5,3 +5,5 @@ __pychache__/
 navigate_to.*
 env
 nav.egg-info
+build
+dist
