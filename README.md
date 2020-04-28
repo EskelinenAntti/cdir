@@ -1,8 +1,8 @@
 
 
-# NAV
+# CDIR
 
-This project exists because I felt that typing multiple `cd`, `dir`/`ls` commands and striking the tab-key is not very fast or pleasant way to navigate in shell. As developers often need to work in multiple environments, nav supports bash shell, Windows Command Prompt and PowerShell. The core component of the project is implemented with python and uses curses module. Windows version uses [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) module.
+This project exists because I felt that typing multiple `cd`, `dir`/`ls` commands and striking the tab-key is not very fast or pleasant way to navigate in shell. As developers often need to work in multiple environments, cdir supports bash shell, Windows Command Prompt and PowerShell. The core component of the project is implemented with python and uses curses module. Windows version uses [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) module.
 
 ![gif](doc/nav2.gif)
 
@@ -12,23 +12,19 @@ This project exists because I felt that typing multiple `cd`, `dir`/`ls` command
 - Supports bash shell, Windows Command Prompt and PowerShell
 
 ## Usage - Bash
-1. Clone the repository
-2. In the src folder of the cloned repository run `pip install -e .` to install nav.
-3. Add following line to .bashrc:
+1. Install with `pip install cdir`
+2. Add following line to .bashrc:
 ```bash
-alias nav='source [path to cloned repository]/bin/nav.sh
+alias cdir='source nav.sh'
 ```
-6. Type nav and start browsing files and folders.
-7. Press f1 to quit nav.
+3. Type nav and start browsing files and folders.
+4. Press f1 to quit nav.
 
 ## Usage - Windows Command Prompt
 
-1. Clone the repository.
-2. In the src folder of the cloned repository run `pip install -e .` to install nav.
-3. Install [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) with `pip install windows-curses`.
-4. Add absolute path to `bin` folder in cloned repository to PATH-environment variable.
-5. Type nav and start browsing files and folders.
-6. Press f1 to quit nav.
+1. Install with `pip install cdir`
+2. Type nav and start browsing files and folders.
+3. Press f1 to quit nav.
 
 ## Contribution
 
