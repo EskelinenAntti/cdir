@@ -15,7 +15,7 @@ This project exists because I felt that typing multiple `cd`, `dir`/`ls` command
 1. Install with `pip install cdir`
 2. Add following line to .bashrc:
 ```bash
-alias cdir='source nav.sh'
+alias cdir='source cdir.sh'
 ```
 3. Type nav and start browsing files and folders.
 4. Press f1 to quit nav.
