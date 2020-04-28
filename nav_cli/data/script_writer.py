@@ -1,4 +1,4 @@
-from nav.data.file_writer import FileWriter
+from nav_cli.data.file_writer import FileWriter
 import os
 
 CD_SCRIPT_FILE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/../../tmp/navigate_to"
