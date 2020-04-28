@@ -7,7 +7,7 @@ setup(name='nav',
   packages=['nav', 'nav/data', 'nav/user_interface'],
   entry_points={
         "console_scripts": [
-            "nav_cli = nav",
+            "nav_cli = nav.__main__:main",
         ]
     }
   )
