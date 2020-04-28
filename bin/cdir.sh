@@ -3,7 +3,7 @@
 # adapted from https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
 
 tmp="$(mktemp)"
-nav_cli "$tmp" $PWD;
+cdir_cli "$tmp" $PWD;
 if [ -f "$tmp" ]; then
     dir="$(cat "$tmp")"
     rm -f "$tmp"

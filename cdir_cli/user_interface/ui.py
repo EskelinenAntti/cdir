@@ -1,10 +1,10 @@
 import curses
-from nav_cli.user_interface.query import Query
-from nav_cli.user_interface.cursor import Cursor
-from nav_cli.user_interface.scroll_position import ScrollPosition
-from nav_cli.user_interface.main_view import MainView
-from nav_cli.user_interface.key_press_handler import KeyPressHandler
-from nav_cli.user_interface.key_press_listener import KeyPressListener
+from cdir_cli.user_interface.query import Query
+from cdir_cli.user_interface.cursor import Cursor
+from cdir_cli.user_interface.scroll_position import ScrollPosition
+from cdir_cli.user_interface.main_view import MainView
+from cdir_cli.user_interface.key_press_handler import KeyPressHandler
+from cdir_cli.user_interface.key_press_listener import KeyPressListener
 
 class UI:
     """ Represents the higher level user interface. Wraps together components

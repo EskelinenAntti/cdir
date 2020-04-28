@@ -1,8 +1,8 @@
 import curses
 from curses import wrapper
-from nav_cli.data.folder_navigator import FolderNavigator
-from nav_cli.user_interface.ui import UI
-from nav_cli.data.file_writer import FileWriter
+from cdir_cli.data.folder_navigator import FolderNavigator
+from cdir_cli.user_interface.ui import UI
+from cdir_cli.data.file_writer import FileWriter
 import sys
 
 

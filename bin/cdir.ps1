@@ -1,7 +1,7 @@
 # adapted from https://github.com/gokcehan/lf/blob/master/etc/lfcd.ps1
 
 $tmp = [System.IO.Path]::GetTempFileName()
-nav_cli "$tmp" "$pwd"
+cdir_cli "$tmp" "$pwd"
 if (test-path -pathtype leaf "$tmp") {
     $dir = type "$tmp"
     remove-item -force "$tmp"
