@@ -1,9 +1,14 @@
-$nav_root_dir = (Get-Item $PSScriptRoot).parent.FullName
 
-py -m nav $pwd.tostring()
 
-# If script runned successfully
-if ($LASTEXITCODE -eq 0) {
-    . "$nav_root_dir\tmp\navigate_to.ps1"
-    erase "$nav_root_dir\tmp\navigate_to.ps1"
+
+$tmp = [System.IO.Path]::GetTempFileName()
+nav_cli "$tmp" "$pwd"
+if (test-path -pathtype leaf "$tmp") {
+    $dir = type "$tmp"
+    remove-item -force "$tmp"
+    if (test-path -pathtype container "$dir") {
+        if ("$dir" -ne "$pwd") {
+            cd "$dir"
+        }
+    }
 }
