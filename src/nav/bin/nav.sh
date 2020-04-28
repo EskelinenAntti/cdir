@@ -1,10 +1,15 @@
 #!/bin/bash
 
-# from https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself
-nav_home="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-nav_home="${nav_home}/.."
+# adapted from https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
 
-if python3 -m nav $PWD; then
-	source $nav_home/tmp/navigate_to.sh
-	rm $nav_home/tmp/navigate_to.sh
+tmp="$(mktemp)"
+nav_cli "$tmp" $PWD;
+if [ -f "$tmp" ]; then
+    dir="$(cat "$tmp")"
+    rm -f "$tmp"
+    if [ -d "$dir" ]; then
+        if [ "$dir" != "$(pwd)" ]; then
+            cd "$dir"s
+        fi
+    fi
 fi
