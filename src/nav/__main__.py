@@ -13,7 +13,7 @@ def main():
 
 def run(screen):
 
-    if len(sys.argv) < 1:
+    if len(sys.argv) < 2:
         sys.exit("No output file provided")
     output_file = sys.argv[1]
 
@@ -21,7 +21,7 @@ def run(screen):
     folder_navigator = FolderNavigator()
 
     # If script was started with path argument
-    if len(sys.argv) >= 2:
+    if len(sys.argv) >= 3:
         current_dir = sys.argv[2]
         folder_navigator.move_to(current_dir)
 
