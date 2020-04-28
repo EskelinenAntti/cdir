@@ -9,7 +9,7 @@ if [ -f "$tmp" ]; then
     rm -f "$tmp"
     if [ -d "$dir" ]; then
         if [ "$dir" != "$(pwd)" ]; then
-            cd "$dir"s
+            cd "$dir"
         fi
     fi
 fi
