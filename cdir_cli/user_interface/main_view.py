@@ -43,14 +43,13 @@ class MainView:
 
         self.screen.clear()
 
+        screen_width = self.screen.getmaxyx()[1]
         if query.query_text:
-            search_header = "Search: "
-            self.screen.addstr(0, 0,
-                               search_header[:self.__get_folder_column_width()-1],
+            search_header = "Search: "[:screen_width-1]
+            self.screen.addstr(0, 0, search_header,
                                curses.color_pair(self.SEARCH_HEADER_COLOR))
-            search_header_width = len(search_header[:self.__get_folder_column_width()-1])
-            self.screen.addstr(0, search_header_width,
-                               query.query_text[:self.__get_folder_column_width()-1-search_header_width])
+            self.screen.addstr(0, len(search_header),
+                               query.query_text[:screen_width-1-len(search_header)])
         else:
             self.screen.addstr(0, 0,
                                "Current Path: " + folder_navigator[:self.__get_folder_column_width()-1],
