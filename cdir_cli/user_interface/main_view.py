@@ -34,12 +34,12 @@ class MainView:
 
     def print_screen(self, folder_navigator: FolderNavigator, query: Query, cursor: Cursor, scroll_position: ScrollPosition):
 
-        if (self.screen.getmaxyx()[0] > 2):
-            self.__draw_header_row(folder_navigator.current_path, query, cursor)
+        if (self.screen.getmaxyx()[0] > self.N_HEADER_ROWS + 1):
+            self.__draw_header_rows(folder_navigator.current_path, query, cursor)
             self.__draw_folders(query.filter_folders(folder_navigator.sub_folders), cursor)
             self.__draw_files(folder_navigator.sub_files, scroll_position)
 
-    def __draw_header_row(self, folder_navigator, query, cursor):
+    def __draw_header_rows(self, folder_navigator, query, cursor):
 
         self.screen.clear()
 
@@ -78,7 +78,7 @@ class MainView:
 
     def __draw_folders(self, folders, cursor):
 
-        pad_max_y_size = self.screen.getmaxyx()[0] - 2
+        pad_max_y_size = self.screen.getmaxyx()[0] - self.N_HEADER_ROWS
         self.file_pad.resize(max(len(folders), pad_max_y_size),
                                self.__get_folder_column_width())
         self.file_pad.clear()
@@ -97,7 +97,7 @@ class MainView:
 
         screen_max_y_coord = self.screen.getmaxyx()[0] - 1
         folder_pad_max_x_coord = self.__get_folder_column_width() - 1
-        self.file_pad.refresh(max(0, (cursor.row_index + 2)  - screen_max_y_coord) ,0,
+        self.file_pad.refresh(max(0, (cursor.row_index + self.N_HEADER_ROWS)  - screen_max_y_coord) ,0,
                         self.N_HEADER_ROWS,0, screen_max_y_coord, folder_pad_max_x_coord -1)
 
     def __draw_files(self, files, file_scroll_position):
@@ -129,4 +129,4 @@ class MainView:
         return self.screen.getmaxyx()[1] - self.__get_folder_column_width()
 
     def __get_file_column_heigth(self):
-        return self.screen.getmaxyx()[0] - 2
+        return self.screen.getmaxyx()[0] - self.N_HEADER_ROWS
