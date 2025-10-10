@@ -1,5 +1,8 @@
 # CDIR
 
+> [!IMPORTANT]  
+> This tool is not maintained, and the repo is kept as a read-only archive. Nowadays there are better alternatives such as [yazi](https://yazi-rs.github.io/).
+
 [![PyPI version](https://badge.fury.io/py/cdir.svg)](https://badge.fury.io/py/cdir)
 
 This project exists because I felt that typing multiple `cd`, `dir`/`ls` commands and striking the tab-key is not very fast or pleasant way to navigate in shell. As developers often need to work in multiple environments, cdir supports bash shell, Windows Command Prompt and PowerShell. The core component of the project is implemented with python and uses curses module. Windows version uses [windows-curses](https://github.com/zephyrproject-rtos/windows-curses) module.
