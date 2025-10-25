@@ -38,6 +38,3 @@ alias cdir='source cdir.sh'
 2. Type cdir and start browsing files and folders.
 3. Press f1 to quit cdir.
 
-## Contribution
-
-Although there are no formal quidelines for contribution yet, it is warmly welcomed! Please use issues to discuss about changes/features you would like to make before implementing them.

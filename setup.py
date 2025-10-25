@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
   name='cdir',
-  version='1.3',
+  version='1.4',
   author="Antti Eskelinen",
   author_email='antti.eskelinen3@gmail.com',
   description='A faster way to navigate folders and browse files in Windows and Linux shells.',
